@@ -1,0 +1,10 @@
+replicaCount: 2
+appName: myapp1
+image:
+  repository: iesodias/mdc-api-python
+  tag: latest
+service:
+  name: myapp1-loadbalancer
+  type: LoadBalancer
+  port: 80
+  targetPort: 5000

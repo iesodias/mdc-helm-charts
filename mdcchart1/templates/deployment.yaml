@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}  # Usando a variável appName do values.yaml
+  template:
+    metadata:
+      name: {{ .Values.appName }}-pod  # Usando a variável appName do values.yaml
+      labels:
+        app: {{ .Values.appName }}  # Usando a variável appName do values.yaml
+    spec:
+      containers:
+        - name: {{ .Values.appName }}-container  # Usando a variável appName do values.yaml
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 5000
